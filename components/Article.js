@@ -1,7 +1,7 @@
 // This is the data we will be using to create our articles. Look at it, then proceed to line 93.
 // OPTIONAL: if you're feeling adventurous, try to make this data an export from a different module, and import it here.
 // You can read about ES6 modules here: https://exploringjs.com/es6/ch_modules.html#sec_basics-of-es6-modules
-const data = [
+const articleMakerObj = [
   {
     title: 'Lambda School Students: "We\'re the best!"',
     date: 'Nov 5th, 2018',
@@ -114,3 +114,56 @@ const data = [
   Step 5: Try adding new article object to the data array. Make sure it is in the same format as the others.
   Refresh the page to see the new article.
 */
+
+// var article = document.createElement('div');
+
+function articleMaker(article){
+
+  var article = document.createElement('div')
+
+    //create elements---
+  const h2 = document.createElement('h2');
+  const p = document.createElement('p');
+  const p1 = document.createElement('p');
+  const p2 = document.createElement('p');
+  const p3 = document.createElement('p');
+  const span = document.createElement('span');
+
+    //add classes---
+  article.classList.add('article');
+  p.classList.add('date');
+  span.classList.add('expandButton');
+
+  //add text
+  h2.textContent = article.title;
+  p.textContent = article.data;
+  span.textContent = '+';
+  p1.textContent = article.firstParagraph;
+  p2.textContent = article.thirdParagraph;
+
+  //apend child
+  article.appendChild(h2)
+  article.appendChild(p)
+  article.appendChild(p1)
+  article.appendChild(p2)
+  article.appendChild(p3)
+  article.appendChild(span)
+
+  span.addEventListener('click', (event) => {
+    article.classList.toggle('article-open')
+  })
+
+  return article
+
+}
+
+var articles = document.querySelector('.articles');
+
+data.forEach(object => {
+  const articleContent = articleMaker(object)
+  articles.appendChild(articleContent)
+})
+
+var dummyArticle = ({ title: 'foo', date: 'bar', firstParagraph: 'words', secondParagraph: 'letters', thirdParagraph: 'numbers'})
+
+data.appendChild(dummyArticle)
